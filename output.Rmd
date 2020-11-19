@@ -1,0 +1,20 @@
+---
+title: "Computational Social Science Project"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readr)
+
+coronaNet <- read.csv('data/coronanet_release.csv')
+germany <- coronaNet %>% filter (country == "Germany")
+x <- table(germany$type)
+
+plot(x)
+            
+```
