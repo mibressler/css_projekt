@@ -3,8 +3,10 @@ title: "Computational Social Science Project"
 output: rmarkdown::github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(
+  fig.path = "README_figs/README-"
+)
 ```
 
 ```{r}
