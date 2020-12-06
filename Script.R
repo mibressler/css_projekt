@@ -7,3 +7,4 @@ x <- table(germany$type)
 
 plot(x)
                
+y=5
