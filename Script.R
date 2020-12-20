@@ -12,4 +12,5 @@ plot(x)
 
 as.Date(casedata$Meldedatum)
 
-ggplot(data=casedata[,c(7,9), aes(x="Meldedatum", y="AnzahlFall")]) + geom_point()
+
+qplot(Meldedatum,y=AnzahlFall, data=casedata)
