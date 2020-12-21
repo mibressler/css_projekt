@@ -1,8 +1,14 @@
 library(tidyverse)
 library(readr)
+library(zoo)
+library(xts)
+library(tidyquant)
+
+## ---- all
 coronaNet <- read.csv('data/coronanet_release.csv')
 casedata_rki <- read.csv('data/rki_basic.csv')
 casedata <- read.csv('data/owid-covid-data.csv')
+
 
 germanycase <- casedata %>% filter (location == "Germany")
 germany <- coronaNet %>% filter (country == "Germany")
@@ -21,6 +27,7 @@ ggplot(data=germanyd, aes(date, total_cases))+
 cases <- casedata_rki %>%     group_by(Meldedatum) %>%
   mutate(TagFall = sum(AnzahlFall)) %>%
   distinct(TagFall, Meldedatum)
+cases <- xts(cases, order.by = as.POSIXct(cases$Meldedatum))
 
 ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
 

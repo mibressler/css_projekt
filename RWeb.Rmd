@@ -1,0 +1,25 @@
+---
+title: "Corona Reg Analyse"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(dygraphs)
+source("Script.R")
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Gemeldete Infektionsfälle über Zeit
+
+```{r, fig.height=3}
+dygraph(cases, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```

@@ -1,0 +1,12 @@
+name: RWeb
+title: RWeb
+username:
+account: smishi
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3420994
+bundleId: 4013330
+url: https://smishi.shinyapps.io/RWeb/
+when: 1608513735.67765
+asMultiple: FALSE
+asStatic: FALSE
