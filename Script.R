@@ -29,5 +29,5 @@ cases <- casedata_rki %>%     group_by(Meldedatum) %>%
   distinct(TagFall, Meldedatum)
 cases <- xts(cases, order.by = as.POSIXct(cases$Meldedatum))
 
-ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
+# ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
 
