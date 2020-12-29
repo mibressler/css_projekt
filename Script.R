@@ -53,7 +53,36 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   SchlesHols_XT <- xts(SchlesHols_G, order.by = as.POSIXct(SchlesHols_G$Meldedatum))
+  
+  Hamb_G <- Hamb %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Hamb_XT <- xts(Hamb_G, order.by = as.POSIXct(Hamb_G$Meldedatum))
+  
+  Nieder_G <- Nieder %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Nieder_XT <- xts(Nieder_G, order.by = as.POSIXct(Nieder_G$Meldedatum))
+  
+  Bremen_G <- Bremen %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Bremen_XT <- xts(Bremen_G, order.by = as.POSIXct(Bremen_G$Meldedatum))
+  
+  NordWest_G <- NordWest %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  NordWest_XT <- xts(NordWest_G, order.by = as.POSIXct(NordWest_G$Meldedatum))
+  
+  Hessen_G <- Hessen %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Hessen_XT <- xts(Hessen_G, order.by = as.POSIXct(Hessen_G$Meldedatum))
 
+  RhePfalz_G <- RhePfalz %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  RhePfalz_XT <- xts(RhePfalz_G, order.by = as.POSIXct(RhePfalz_G$Meldedatum))
 
 
 # ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
