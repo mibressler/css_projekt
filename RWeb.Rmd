@@ -17,9 +17,16 @@ source("Script.R")
 Column {data-width=650, .tabset}
 -----------------------------------------------------------------------
 
-### Gemeldete Infektionsfälle über Zeit
+### Schleswig Holstein
 
 ```{r, fig.height=3}
-dygraph(cases, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+dygraph(SchlesHols_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
+
+### Hamburg
+
+```{r, fig.height=3}
+dygraph(Hamb_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
 
 ```
