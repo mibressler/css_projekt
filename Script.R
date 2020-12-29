@@ -83,7 +83,34 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   RhePfalz_XT <- xts(RhePfalz_G, order.by = as.POSIXct(RhePfalz_G$Meldedatum))
+BadWuert_G <- BadWuert %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  BadWuert_XT <- xts(BadWuert_G, order.by = as.POSIXct(BadWuert_G$Meldedatum))
 
-
+Bay_G <- Bay %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Bay_XT <- xts(Bay_G, order.by = as.POSIXct(Bay_G$Meldedatum))
+  
+Saarl_G <- Saarl %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Saarl_XT <- xts(Saarl_G, order.by = as.POSIXct(Saarl_G$Meldedatum))
+  
+Berlin_G <- Berlin %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Berlin_XT <- xts(Berlin_G, order.by = as.POSIXct(Berlin_G$Meldedatum))
+  
+Brand_G <- Brand %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Brand_XT <- xts(Brand_G, order.by = as.POSIXct(Brand_G$Meldedatum))
+  
+MeckVor_G <- MeckVor %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  MeckVor_XT <- xts(MeckVor_G, order.by = as.POSIXct(MeckVor_G$Meldedatum))
 # ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
 
