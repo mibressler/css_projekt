@@ -35,7 +35,8 @@ dygraph(Hamb_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infekti
 ### Niedersachsen
 
 ```{r, fig.height=3}
-dygraph(Nieder_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+dygraph(Nieder_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-03-20","CoronaVV", labelLoc = "bottom") %>% dyEvent("2020-03-28","CoronaVsozKonBeschrV", labelLoc = "bottom") %>% dyEvent("2020-04-04","CoronaVsozKonBeschrV 2", labelLoc = "bottom") %>% dyEvent("2020-04-08","CoronaVsozKonBeschrV 3", labelLoc = "bottom") %>% dyEvent("2020-04-19","CoronaVNeuIfSV", labelLoc = "bottom") %>% dyEvent("2020-05-06","CoronaVKHBeschrV", labelLoc = "bottom") %>% dyEvent("2020-05-11","CoronaVInfSchMaßnV", labelLoc = "bottom") %>% dyEvent("2020-07-13","CoronaVInfSchMaßnV 2", labelLoc = "bottom") %>% dyEvent("2020-07-18","CoronaVKHBeschrV 2", labelLoc = "bottom") %>% dyEvent("2020-10-09","CoronaVInfSchMaßnV 3", labelLoc = "bottom") %>% dyEvent("2020-10-10","CoronaVBeherbVV", labelLoc = "bottom") %>% dyEvent("2020-11-02","CoronaVInfSchMaßnV 4", labelLoc = "bottom") %>% dyEvent("2020-11-09","CoronaVQuarV", labelLoc = "bottom")
+
 
 ```
 
