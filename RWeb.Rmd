@@ -30,3 +30,40 @@ dygraph(SchlesHols_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete I
 dygraph(Hamb_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
 
 ```
+
+### Baden-Württemberg
+
+```{r, fig.height=3}
+dygraph(BadWuert_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
+### Bayern
+
+```{r, fig.height=3}
+dygraph(Bay_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
+### Saarland
+
+```{r, fig.height=3}
+dygraph(Saarl_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
+### Berlin
+
+```{r, fig.height=3}
+dygraph(Berlin_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
+### Brandenburg
+
+```{r, fig.height=3}
+dygraph(Brand_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
+### Mecklenburg-Vorpommern
+
+```{r, fig.height=3}
+dygraph(MeckVor_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
