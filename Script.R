@@ -25,11 +25,34 @@ germanyd <- subset(germanycase, date>d1 & date<d2)
 ggplot(data=germanyd, aes(date, total_cases))+
   geom_bar(fill="steelblue", stat='identity')
 
+# nach Bundesland
+SchlesHols <- subset(casedata_rki, IdBundesland == "1")
+Hamb <- subset(casedata_rki, IdBundesland == "2")
+Nieder <- subset(casedata_rki, IdBundesland == "3")
+Bremen <- subset(casedata_rki, IdBundesland == "4")
+NordWest <- subset(casedata_rki, IdBundesland == "5")
+Hessen <- subset(casedata_rki, IdBundesland == "6")
+RhePfalz <- subset(casedata_rki, IdBundesland == "7")
+BadWuert <- subset(casedata_rki, IdBundesland == "8")
+Bay <- subset(casedata_rki, IdBundesland == "9")
+Saarl <- subset(casedata_rki, IdBundesland == "10")
+Berlin <- subset(casedata_rki, IdBundesland == "11")
+Brand <- subset(casedata_rki, IdBundesland == "12")
+MeckVor <- subset(casedata_rki, IdBundesland == "13")
+Sachsen <- subset(casedata_rki, IdBundesland == "14")
+SachAnh <- subset(casedata_rki, IdBundesland == "15")
+Thuer <- subset(casedata_rki, IdBundesland == "16")
+
+bundeslaender <- list(SchlesHols,Hamb,Nieder,Bremen)
+
 # täglich gemeldete Fälle ~ Zeit
-cases <- casedata_rki %>%     group_by(Meldedatum) %>%
-  mutate(TagFall = sum(AnzahlFall)) %>%
-  distinct(TagFall, Meldedatum)
-cases <- xts(cases, order.by = as.POSIXct(cases$Meldedatum))
+ 
+SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  SchlesHols_XT <- xts(SchlesHols_G, order.by = as.POSIXct(SchlesHols_G$Meldedatum))
+
+
 
 # ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
 

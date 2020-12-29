@@ -14,7 +14,7 @@ library(dygraphs)
 source("Script.R")
 ```
 
-Column {data-width=650}
+Column {data-width=650, .tabset}
 -----------------------------------------------------------------------
 
 ### Gemeldete Infektionsfälle über Zeit
