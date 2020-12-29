@@ -101,3 +101,23 @@ dygraph(Brand_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infekt
 dygraph(MeckVor_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
 
 ```
+### Sachsen
+
+```{r, fig.height=3}
+dygraph(Sachsen_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
+
+### Sachsen-Anhalt
+
+```{r, fig.height=3}
+dygraph(SachAnh_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+```
+
+### Thueringen
+
+```{r, fig.height=3}
+dygraph(Thuer_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+
+``` 
