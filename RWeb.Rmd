@@ -53,18 +53,87 @@ dygraph(Nieder_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infek
 
 
 ```
-
 ### Bremen
 
 ```{r, fig.height=3}
-dygraph(Bremen_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+dygraph(Bremen_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") 
+%>% dyEvent("2020-04-10","1. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-05-06","2. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-05-14","3. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-05-20","4. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-05-27","5. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-06-10","6. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-06-17","7. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-06-22","8. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-06-26","9. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-07-02","10. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-07-15","11. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-08-01","12. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-08-11","13. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-09-01","14. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-09-03","15. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-09-09","16. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-10-02","17. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-10-17","18. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-11-03","19. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-11-11","20. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-11-18","21. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-12-14","22. Coronaverordnung", labelLoc = "bottom")
+%>% dyEvent("2020-12-16","23. Coronaverordnung", labelLoc = "bottom")
 
 ```
 
 ### Nordrhein-Westfalen
 
 ```{r, fig.height=3}
-dygraph(NordWest_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+dygraph(NordWest_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") 
+%>% dyEvent("2020-03-23","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-04-20","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-04","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-07","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-11","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-20","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-21","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-30","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-06-15","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-06-16","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-06-25","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-06-30","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-07-01","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-07-15","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-08-12","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-08-14","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-09-01","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-09-15","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-10-01","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-10-17","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-11-02","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-11-10","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-12-01","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-12-09","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-12-16","CoronaSchVO", labelLoc = "bottom")
+%>% dyEvent("2020-12-18","CoronaSchVO", labelLoc = "bottom")
+
+```
+
+### Rheinland Pfalz
+
+```{r, fig.height=3}
+dygraph(RhePfalz_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") 
+%>% dyEvent("2020-03-20","1. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-03-21","2. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-03-23","3. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-04-20","4. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-03","5. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-13","6. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-18","7. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-05-27","8. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-06-10","9. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-06-24","10. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-09-16","11. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-11-02","12. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-12-01","13. CoBeLVO", labelLoc = "bottom")
+%>% dyEvent("2020-12-16","14. CoBeLVO", labelLoc = "bottom")
 
 ```
 
@@ -72,13 +141,6 @@ dygraph(NordWest_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Inf
 
 ```{r, fig.height=3}
 dygraph(Hessen_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
-
-```
-
-### Rheinland Pfalz
-
-```{r, fig.height=3}
-dygraph(RhePfalz_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
 
 ```
 
