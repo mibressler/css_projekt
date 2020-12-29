@@ -112,5 +112,20 @@ MeckVor_G <- MeckVor %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   MeckVor_XT <- xts(MeckVor_G, order.by = as.POSIXct(MeckVor_G$Meldedatum))
+  
+  Sachsen_G <- Sachsen %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Sachsen_XT <- xts(Sachsen_G, order.by = as.POSIXct(Sachsen_G$Meldedatum))
+  
+  SachAnh_G <- SachAnh %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  SachAnh_XT <- xts(SachAnh_G, order.by = as.POSIXct(SachAnh_G$Meldedatum))
+  
+  Thuer_G <- Thuer %>% group_by(Meldedatum) %>%
+    mutate(TagFall = sum(AnzahlFall)) %>%
+    distinct(TagFall, Meldedatum)
+  Thuer_XT <- xts(Thuer_G, order.by = as.POSIXct(Thuer_G$Meldedatum))
 # ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
 
