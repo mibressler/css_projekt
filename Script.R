@@ -3,6 +3,7 @@ library(readr)
 library(zoo)
 library(xts)
 library(tidyquant)
+library(plyr)
 
 ## ---- all
 coronaNet <- read.csv('data/coronanet_release.csv')
@@ -53,6 +54,12 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   SchlesHols_XT <- xts(SchlesHols_G, order.by = as.POSIXct(SchlesHols_G$Meldedatum))
+  
+  SchlesHols_G$week <- format(SchlesHols_G$TagFall, format="%Y-%U")
+  siebentage   <-   ddply(SchlesHols_G, .(week), summarize, sum=sum(TagFall))
+  SchlesHols_Einwohner <- 2903773
+siebentage <- siebentage %>% mutate(inzidenz =(sum / SchlesHols_Einwohner)*100000)
+
   
   Hamb_G <- Hamb %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
