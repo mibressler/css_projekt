@@ -65,74 +65,150 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
     distinct(TagFall, Meldedatum)
   Hamb_XT <- xts(Hamb_G, order.by = as.POSIXct(Hamb_G$Meldedatum))
   
+  Ham_G <- Ham_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Ham_G <- Ham_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Ham_Einwohner <- 1847253
+  Ham_G <- Ham_G%>% mutate(inzidenz = (weekFall / Ham_Einwohner)*100000)
+    
   Nieder_G <- Nieder %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Nieder_XT <- xts(Nieder_G, order.by = as.POSIXct(Nieder_G$Meldedatum))
+  
+  Nieder_G <- Nieder_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Nieder_G <- Nieder_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Nieder_Einwohner <- 7993608
+  Nieder_G <- Nieder_G%>% mutate(inzidenz = (weekFall / Nieder_Einwohner)*100000)
   
   Bremen_G <- Bremen %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Bremen_XT <- xts(Bremen_G, order.by = as.POSIXct(Bremen_G$Meldedatum))
   
+  Bremen_G <- Bremen_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Bremen_G <- Bremen_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Bremen_Einwohner <- 681202
+  Bremen_G <- Bremen_G%>% mutate(inzidenz = (weekFall / Bremen_Einwohner)*100000)
+  
   NordWest_G <- NordWest %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   NordWest_XT <- xts(NordWest_G, order.by = as.POSIXct(NordWest_G$Meldedatum))
+  
+  NordWest_G <- NordWest_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  NordWest_G <- NordWest_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  NordWest_Einwohner <- 17947221
+  NordWest_G <- NordWest_G%>% mutate(inzidenz = (weekFall / NordWest_Einwohner)*100000)
   
   Hessen_G <- Hessen %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Hessen_XT <- xts(Hessen_G, order.by = as.POSIXct(Hessen_G$Meldedatum))
 
+  Hessen_G <- Hessen_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Hessen_G <- Hessen_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Hessen_Einwohner <- 6288080
+  Hessen_G <- Hessen_G%>% mutate(inzidenz = (weekFall / Hessen_Einwohner)*100000)
+  
   RhePfalz_G <- RhePfalz %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   RhePfalz_XT <- xts(RhePfalz_G, order.by = as.POSIXct(RhePfalz_G$Meldedatum))
+  
+  RhePfalz_G <- RhePfalz_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  RhePfalz_G <- RhePfalz_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  RhePfalz_Einwohner <- 4093903
+  RhePfalz_G <- RhePfalz_G%>% mutate(inzidenz = (weekFall / RhePfalz_Einwohner)*100000)
   
 BadWuert_G <- BadWuert %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   BadWuert_XT <- xts(BadWuert_G, order.by = as.POSIXct(BadWuert_G$Meldedatum))
 
+  BadWuert_G <- BadWuert_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  BadWuert_G <- BadWuert_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  BadWuert_Einwohner <- 11100394
+  BadWuert_G <- BadWuert_G%>% mutate(inzidenz = (weekFall / BadWuert_Einwohner)*100000)
+  
 Bay_G <- Bay %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Bay_XT <- xts(Bay_G, order.by = as.POSIXct(Bay_G$Meldedatum))
+  
+  Bay_G <- Bay_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Bay_G <- Bay_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Bay_Einwohner <- 13124737
+  Bay_G <- Bay_G%>% mutate(inzidenz = (weekFall / Bay_Einwohner)*100000)
   
 Saarl_G <- Saarl %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Saarl_XT <- xts(Saarl_G, order.by = as.POSIXct(Saarl_G$Meldedatum))
   
+  Saarl_G <- Saarl_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Saarl_G <- Saarl_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Saarl_Einwohner <- 986887
+  Saarl_G <- Saarl_G%>% mutate(inzidenz = (weekFall / Saarl_Einwohner)*100000)
+  
 Berlin_G <- Berlin %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Berlin_XT <- xts(Berlin_G, order.by = as.POSIXct(Berlin_G$Meldedatum))
+  
+  Berlin_G <- Berlin_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Berlin_G <- Berlin_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Berlin_Einwohner <- 3669491
+  Berlin_G <- Berlin_G%>% mutate(inzidenz = (weekFall / Berlin_Einwohner)*100000)
   
 Brand_G <- Brand %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Brand_XT <- xts(Brand_G, order.by = as.POSIXct(Brand_G$Meldedatum))
   
+  Brand_G <- Brand_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Brand_G <- Brand_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Brand_Einwohner <- 2521893
+  Brand_G <- Brand_G%>% mutate(inzidenz = (weekFall / Brand_Einwohner)*100000)
+  
 MeckVor_G <- MeckVor %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   MeckVor_XT <- xts(MeckVor_G, order.by = as.POSIXct(MeckVor_G$Meldedatum))
+  
+  MeckVor_G <- MeckVor_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  MeckVor_G <- MeckVor_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  MeckVor_Einwohner <- 1608138
+  MeckVor_G <- MeckVor_G%>% mutate(inzidenz = (weekFall / MeckVor_Einwohner)*100000)
   
   Sachsen_G <- Sachsen %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Sachsen_XT <- xts(Sachsen_G, order.by = as.POSIXct(Sachsen_G$Meldedatum))
   
+  Sachsen_G <- Sachsen_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Sachsen_G <- Sachsen_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Sachsen_Einwohner <- 4071971
+  Sachsen_G <- Sachsen_G%>% mutate(inzidenz = (weekFall / Sachsen_Einwohner)*100000)
+  
   SachAnh_G <- SachAnh %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   SachAnh_XT <- xts(SachAnh_G, order.by = as.POSIXct(SachAnh_G$Meldedatum))
   
+  SachAnh_G <- SachAnh_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  SachAnh_G <- SachAnh_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  SachAnh_Einwohner <- 2194782
+  SachAnh_G <- SachAnh_G%>% mutate(inzidenz = (weekFall / SachAnh_Einwohner)*100000)
+  
   Thuer_G <- Thuer %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Thuer_XT <- xts(Thuer_G, order.by = as.POSIXct(Thuer_G$Meldedatum))
+  
+  Thuer_G <- Thuer_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Thuer_G <- Thuer_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Thuer_Einwohner <- 2133378
+  Thuer_G <- Thuer_G%>% mutate(inzidenz = (weekFall / Thuer_Einwohner)*100000)
+  
 # ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
 
