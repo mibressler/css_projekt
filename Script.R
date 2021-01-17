@@ -58,17 +58,21 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   SchlesHols_G <- SchlesHols_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   SchlesHols_Einwohner <- 2903773
  SchlesHols_G <- SchlesHols_G%>% mutate(inzidenz = (weekFall / SchlesHols_Einwohner)*100000)
-
+ SchlesHols_G 
+ 
+ SchlesHols_G <- SchlesHols_G %>% mutate(weekmean = weekFall / 7)
   
   Hamb_G <- Hamb %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
   Hamb_XT <- xts(Hamb_G, order.by = as.POSIXct(Hamb_G$Meldedatum))
   
-  Ham_G <- Ham_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
-  Ham_G <- Ham_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
-  Ham_Einwohner <- 1847253
-  Ham_G <- Ham_G%>% mutate(inzidenz = (weekFall / Ham_Einwohner)*100000)
+  Hamb_G <- Hamb_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
+  Hamb_G <- Hamb_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
+  Hamb_Einwohner <- 1847253
+  Hamb_G <- Hamb_G%>% mutate(inzidenz = (weekFall / Ham_Einwohner)*100000)
+  
+  Hamb_G <- Hamb_G %>% mutate(weekmean = weekFall / 7)
     
   Nieder_G <- Nieder %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
@@ -80,6 +84,8 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   Nieder_Einwohner <- 7993608
   Nieder_G <- Nieder_G%>% mutate(inzidenz = (weekFall / Nieder_Einwohner)*100000)
   
+  Nieder_G <- Nieder_G %>% mutate(weekmean = weekFall / 7)
+  
   Bremen_G <- Bremen %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
@@ -89,6 +95,8 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   Bremen_G <- Bremen_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   Bremen_Einwohner <- 681202
   Bremen_G <- Bremen_G%>% mutate(inzidenz = (weekFall / Bremen_Einwohner)*100000)
+  
+  Bremen_G <- Bremen_G %>% mutate(weekmean = weekFall / 7)
   
   NordWest_G <- NordWest %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
@@ -100,6 +108,8 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   NordWest_Einwohner <- 17947221
   NordWest_G <- NordWest_G%>% mutate(inzidenz = (weekFall / NordWest_Einwohner)*100000)
   
+  NordWest_G <- NordWest_G %>% mutate(weekmean = weekFall / 7)
+  
   Hessen_G <- Hessen %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
@@ -109,6 +119,8 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   Hessen_G <- Hessen_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   Hessen_Einwohner <- 6288080
   Hessen_G <- Hessen_G%>% mutate(inzidenz = (weekFall / Hessen_Einwohner)*100000)
+  
+  Hessen_G <- Hessen_G %>% mutate(weekmean = weekFall / 7)
   
   RhePfalz_G <- RhePfalz %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
@@ -120,6 +132,8 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   RhePfalz_Einwohner <- 4093903
   RhePfalz_G <- RhePfalz_G%>% mutate(inzidenz = (weekFall / RhePfalz_Einwohner)*100000)
   
+  RhePflaz_G <- RhePfalz_G %>% mutate(weekmean = weekFall / 7)
+  
 BadWuert_G <- BadWuert %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
@@ -129,6 +143,8 @@ BadWuert_G <- BadWuert %>% group_by(Meldedatum) %>%
   BadWuert_G <- BadWuert_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   BadWuert_Einwohner <- 11100394
   BadWuert_G <- BadWuert_G%>% mutate(inzidenz = (weekFall / BadWuert_Einwohner)*100000)
+  
+  BadWuert_G <- BadWuert_G %>% mutate(weekmean = weekFall / 7)
   
 Bay_G <- Bay %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
@@ -140,6 +156,8 @@ Bay_G <- Bay %>% group_by(Meldedatum) %>%
   Bay_Einwohner <- 13124737
   Bay_G <- Bay_G%>% mutate(inzidenz = (weekFall / Bay_Einwohner)*100000)
   
+  Bay_G <- Bay_G %>% mutate(weekmean = weekFall / 7)
+  
 Saarl_G <- Saarl %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
@@ -149,6 +167,8 @@ Saarl_G <- Saarl %>% group_by(Meldedatum) %>%
   Saarl_G <- Saarl_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   Saarl_Einwohner <- 986887
   Saarl_G <- Saarl_G%>% mutate(inzidenz = (weekFall / Saarl_Einwohner)*100000)
+  
+  Saarl_G <- Saarl_G %>% mutate(weekmean = weekFall / 7)
   
 Berlin_G <- Berlin %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
@@ -160,6 +180,8 @@ Berlin_G <- Berlin %>% group_by(Meldedatum) %>%
   Berlin_Einwohner <- 3669491
   Berlin_G <- Berlin_G%>% mutate(inzidenz = (weekFall / Berlin_Einwohner)*100000)
   
+  Berlin_G <- Berlin_G %>% mutate(weekmean = weekFall / 7)
+  
 Brand_G <- Brand %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
@@ -169,6 +191,8 @@ Brand_G <- Brand %>% group_by(Meldedatum) %>%
   Brand_G <- Brand_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   Brand_Einwohner <- 2521893
   Brand_G <- Brand_G%>% mutate(inzidenz = (weekFall / Brand_Einwohner)*100000)
+  
+  Brand_G <- Brand_G %>% mutate(weekmean = weekFall / 7)
   
 MeckVor_G <- MeckVor %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
@@ -180,6 +204,8 @@ MeckVor_G <- MeckVor %>% group_by(Meldedatum) %>%
   MeckVor_Einwohner <- 1608138
   MeckVor_G <- MeckVor_G%>% mutate(inzidenz = (weekFall / MeckVor_Einwohner)*100000)
   
+  MeckVor_G <- MeckVor_G %>% mutate(weekmean = weekFall / 7)
+  
   Sachsen_G <- Sachsen %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
@@ -189,6 +215,8 @@ MeckVor_G <- MeckVor %>% group_by(Meldedatum) %>%
   Sachsen_G <- Sachsen_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   Sachsen_Einwohner <- 4071971
   Sachsen_G <- Sachsen_G%>% mutate(inzidenz = (weekFall / Sachsen_Einwohner)*100000)
+  
+  Sachsen_G <- Sachsen_G %>% mutate(weekmean = weekFall / 7)
   
   SachAnh_G <- SachAnh %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
@@ -200,6 +228,8 @@ MeckVor_G <- MeckVor %>% group_by(Meldedatum) %>%
   SachAnh_Einwohner <- 2194782
   SachAnh_G <- SachAnh_G%>% mutate(inzidenz = (weekFall / SachAnh_Einwohner)*100000)
   
+  SachAnh_G <- SachAnh_G %>% mutate(weekmean = weekFall / 7)
+  
   Thuer_G <- Thuer %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
     distinct(TagFall, Meldedatum)
@@ -210,5 +240,33 @@ MeckVor_G <- MeckVor %>% group_by(Meldedatum) %>%
   Thuer_Einwohner <- 2133378
   Thuer_G <- Thuer_G%>% mutate(inzidenz = (weekFall / Thuer_Einwohner)*100000)
   
+  Thuer_G <- Thuer_G %>% mutate(weekmean = weekFall / 7)
+  
 # ggplot(cases, aes(x=as.Date(Meldedatum),y=TagFall)) + geom_line()
 
+
+# Frequenz der Verordnungen
+testgeltung <- read.csv("geltung1.csv")  
+holstest <- as.Date(testgeltung[c(1:15),3], '%d.%m.%Y')
+holssverordn <- data.frame(date=holstest,verordn=1)
+
+holslm <- SchlesHols_G %>% select(weekmean,Meldedatum)
+holslm <- holslm %>% group_by(week) %>% summarise(weekmean=weekmean,Meldedatum=Meldedatum)
+holslm$Meldedatum <- as.Date(holslm$Meldedatum)
+
+
+holscount <- data.frame(Geltungsstart=holstest,weeknr=week(holstest))
+holsfreq <- holscount %>% group_by(weeknr) %>% summarise(verordfreq = length(Geltungsstart),Meldedatum=Geltungsstart)
+
+holsfinal <- merge(holslm,holsfreq,by="Meldedatum",all=T)
+holsfinal[is.na(holsfinal)] <- 0
+
+holsfinal2 <- holsfinal %>% select(Meldedatum,weekmean,verordfreq)
+
+
+glm <- glm(holsfinal2$verordfreq ~ holsfinal2$weekmean, family="binomial")
+library(popbio)
+logi.hist.plot(holsfinal2$weekmean,holsfinal2$verordfreq,boxp=F,type="hist",col="gray")
+
+  
+# verordnungen <- data.frame(Bundesland = SchleswigHolstein, Geltungsstart = 
