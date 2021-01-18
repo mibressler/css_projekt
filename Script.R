@@ -268,5 +268,25 @@ glm <- glm(holsfinal2$verordfreq ~ holsfinal2$weekmean, family="binomial")
 library(popbio)
 logi.hist.plot(holsfinal2$weekmean,holsfinal2$verordfreq,boxp=F,type="hist",col="gray")
 
-  
+# Geltungsstarts
+
+MakeDate <- function(date) {
+  date[date==""] <- NA
+  date <- as.Date(date,'%d.%m.%Y')
+  date <- na.omit(date)
+  return(date)
+}
+
+geltung <- read.csv("data/geltung_18_01.csv")
+
+geltung_erststarts <- geltung$Geltung.START
+
+geltung_erststarts <- MakeDate(geltung_erststarts)
+
+geltung_aenderungen <- as.vector(as.matrix(geltung[,c(5:26)]))
+
+geltung_aenderungen <- MakeDate(geltung_aenderungen)
+
+geltung_alle <- c(geltung_erststarts,geltung_aenderungen)
+
 # verordnungen <- data.frame(Bundesland = SchleswigHolstein, Geltungsstart = 
