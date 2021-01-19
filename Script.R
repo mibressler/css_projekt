@@ -320,6 +320,8 @@ gmodeldata <- modeldata %>% group_by(Meldedatum,FaelleproTag) %>% summarise(Gelt
 
 # Analytics ungrouped data (binary response)
 model <- glm(modeldata$Geltungsstart ~ modeldata$FaelleproTag, family="binomial")
+    # binary response mit diff
+# dgmodel <- glm(modeldata$Geltungsstart ~ dmodeldata$diff, family="binomial")
 
 ggplot(modeldata, aes(x=Meldedatum,y=FaelleproTag)) + geom_line()
 
@@ -353,9 +355,24 @@ ggplot(data=gmodeldata, aes(x=Meldedatum))+
   scale_y_continuous(sec.axis=sec_axis(trans~./1500,name="Geltungsstarts am Tag"))
 
 gmodel <- lm(gmodeldata$Geltungsstart ~ gmodeldata$FaelleproTag)
+summary(gmodel)
 
 cor <- cor.test(gmodeldata$Geltungsstart,gmodeldata$FaelleproTag)
-# 
+# Ansatz mit Differenz der Fallzahlen
+g2modeldata <- gmodeldata %>% mutate(test="test")
+dmodeldata <- g2modeldata %>% group_by(test) %>% mutate(diff= FaelleproTag - lag(FaelleproTag))
 
+dmodel <- lm(dmodeldata$Geltungsstart ~ dmodeldata$diff)
+summary(dmodel)
+
+boxplot(dmodel[['residuals']],main='Boxplot: Residuals',ylab='residual value')
+
+
+dcor <- cor.test(dmodeldata$Geltungsstart,dmodeldata$diff)
+
+ggplot(data=dmodeldata, aes(x=Meldedatum))+
+  geom_line(aes(y=diff),color="red") +
+  geom_smooth(aes(y=Geltungsstart*1500),color="blue",span=0.1)+
+  scale_y_continuous(sec.axis=sec_axis(trans~./1500,name="Geltungsstarts am Tag"))
 
 # verordnungen <- data.frame(Bundesland = SchleswigHolstein, Geltungsstart = 
