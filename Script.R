@@ -3,6 +3,9 @@ library(readr)
 library(zoo)
 library(xts)
 library(tidyquant)
+library(pROC)
+library(quantreg)
+
 
 ## ---- all
 coronaNet <- read.csv('data/coronanet_release.csv')
@@ -132,7 +135,7 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   RhePfalz_Einwohner <- 4093903
   RhePfalz_G <- RhePfalz_G%>% mutate(inzidenz = (weekFall / RhePfalz_Einwohner)*100000)
   
-  RhePflaz_G <- RhePfalz_G %>% mutate(weekmean = weekFall / 7)
+  RhePfalz_G <- RhePfalz_G %>% mutate(weekmean = weekFall / 7)
   
 BadWuert_G <- BadWuert %>% group_by(Meldedatum) %>%
     mutate(TagFall = sum(AnzahlFall)) %>%
@@ -270,6 +273,7 @@ logi.hist.plot(holsfinal2$weekmean,holsfinal2$verordfreq,boxp=F,type="hist",col=
 
 # Geltungsstarts
 
+# Presets
 MakeDate <- function(date) {
   date[date==""] <- NA
   date <- as.Date(date,'%d.%m.%Y')
@@ -277,6 +281,7 @@ MakeDate <- function(date) {
   return(date)
 }
 
+# Geltungen
 geltung <- read.csv("data/geltung_18_01.csv")
 
 geltung_erststarts <- geltung$Geltung.START
@@ -288,5 +293,69 @@ geltung_aenderungen <- as.vector(as.matrix(geltung[,c(5:26)]))
 geltung_aenderungen <- MakeDate(geltung_aenderungen)
 
 geltung_alle <- c(geltung_erststarts,geltung_aenderungen)
+
+geltung_alle <- data.frame(Meldedatum=geltung_alle,Geltungsstart=geltung_alle)
+
+# Weekmeans
+bundes_weekmean <- c(BadWuert_G$weekmean,Bay_G$weekmean,Berlin_G$weekmean,Brand_G$weekmean,Bremen_G$weekmean,Hamb_G$weekmean,Hessen_G$weekmean,MeckVor_G$weekmean,Nieder_G$weekmean,NordWest_G$weekmean,RhePfalz_G$weekmean,Saarl_G$weekmean,SachAnh_G$weekmean,Sachsen_G$weekmean,SchlesHols_G$weekmean,Thuer_G$weekmean)
+
+# Fälle pro Meldedatum
+
+fpm <- casedata_rki[,c("AnzahlFall","Meldedatum")]
+fpm <- fpm %>% group_by(Meldedatum) %>% summarise(FaelleproTag=sum(AnzahlFall))
+fpm$Meldedatum <- as.Date(fpm$Meldedatum)
+
+# Model
+
+modeldata <- merge(fpm,geltung_alle,by="Meldedatum", all=T)
+model <- glm(geltung_alle)   
+    # Geltungsstart 0<->1
+modeldata$Geltungsstart <- as.character(modeldata$Geltungsstart)
+modeldata$Geltungsstart[!is.na(modeldata$Geltungsstart)] <- 1
+modeldata[is.na(modeldata)] <- 0
+modeldata$Geltungsstart <- as.numeric(modeldata$Geltungsstart)
+
+   # group by day
+gmodeldata <- modeldata %>% group_by(Meldedatum,FaelleproTag) %>% summarise(Geltungsstart=sum(Geltungsstart))
+
+# Analytics ungrouped data (binary response)
+model <- glm(modeldata$Geltungsstart ~ modeldata$FaelleproTag, family="binomial")
+
+ggplot(modeldata, aes(x=Meldedatum,y=FaelleproTag)) + geom_line()
+
+logi.hist.plot(modeldata$FaelleproTag,modeldata$Geltungsstart,boxp=F,type="hist",col="gray")
+
+boxplot(FaelleproTag~Geltungsstart, ylab="Am Tag gemeldete Fälle", xlab= "Geltungsbeginn einer Veordnung", col="light blue",data = modeldata)
+
+summary(model)
+summary(model$fitted.values)
+
+hist(model$fitted.values, main = " Histogram ",xlab = "Wahrscheinlichkeit eines Geltungsbeginns", col = 'light green')
+
+roc(Geltungsstart~model$fitted.values, data = modeldata, plot = TRUE, main = "ROC CURVE", col= "blue")
+
+auc(Geltungsstart~model$fitted.values, data = modeldata)
+
+# Analytics grouped data (continous response)
+ggplot(data=gmodeldata, aes(x=Meldedatum))+
+  geom_area(aes(y=FaelleproTag),fill="red") +
+  geom_density2d(aes(y=Geltungsstart*1500),color="blue")+
+  scale_y_continuous(sec.axis=sec_axis(trans~./1500,name="Geltungsstarts am Tag"))
+
+ggplot(data=gmodeldata, aes(x=Meldedatum))+
+  geom_area(aes(y=FaelleproTag),fill="red") +
+  geom_jitter(aes(y=Geltungsstart*1500),color="blue")+
+  scale_y_continuous(sec.axis=sec_axis(trans~./1500,name="Geltungsstarts am Tag"))
+
+ggplot(data=gmodeldata, aes(x=Meldedatum))+
+  geom_area(aes(y=FaelleproTag),fill="red") +
+  geom_smooth(aes(y=Geltungsstart*1500),color="blue",span=0.1)+
+  scale_y_continuous(sec.axis=sec_axis(trans~./1500,name="Geltungsstarts am Tag"))
+
+gmodel <- lm(gmodeldata$Geltungsstart ~ gmodeldata$FaelleproTag)
+
+cor <- cor.test(gmodeldata$Geltungsstart,gmodeldata$FaelleproTag)
+# 
+
 
 # verordnungen <- data.frame(Bundesland = SchleswigHolstein, Geltungsstart = 
