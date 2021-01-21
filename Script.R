@@ -1,3 +1,4 @@
+# MICHAEL BRAUCHT ZOOM LINK AUF SLACK
 library(tidyverse)
 library(readr)
 library(zoo)
