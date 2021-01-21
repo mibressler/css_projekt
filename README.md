@@ -1,4 +1,4 @@
-Computational Social Science Project
+Computational Social Science Project MICHAEL HAT KEIN HANDY UND BRAUCHT ZOOM LINK AUF SLACK!
 ================
 
 ``` r
