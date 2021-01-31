@@ -32,8 +32,8 @@ plot(x)
 
 d1 <- as.Date("2020-11-11")
 d2 <- as.Date("2020-11-22")
-germanyd <- subset(germanycase, date>d1 & date<d2)
-ggplot(data=germanyd, aes(date, total_cases))+
+# germanyd <- subset(germanycase, date>d1 & date<d2)
+# ggplot(data=germanyd, aes(date, total_cases))+
   geom_bar(fill="steelblue", stat='identity')
 
 # nach Bundesland
