@@ -73,7 +73,7 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   Hamb_G <- Hamb_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
   Hamb_G <- Hamb_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   Hamb_Einwohner <- 1847253
-  Hamb_G <- Hamb_G%>% mutate(inzidenz = (weekFall / Ham_Einwohner)*100000)
+  Hamb_G <- Hamb_G%>% mutate(inzidenz = (weekFall / Hamb_Einwohner)*100000)
   
   Hamb_G <- Hamb_G %>% mutate(weekmean = weekFall / 7)
     
