@@ -18,12 +18,12 @@ library(quantreg)
 ## ---- all
 coronaNet <- read.csv('data/coronanet_release.csv')
 casedata_rki <- read.csv('data/rki_basic.csv')
-casedata <- read.csv('data/owid-covid-data.csv')
+# casedata <- read.csv('data/owid-covid-data.csv')
 
 cNetBay <- coronaNet[coronaNet$country=="Germany",]
 cNetBay <- cNetBay[cNetBay$province=="Bavaria",]
 
-germanycase <- casedata %>% filter (location == "Germany")
+# germanycase <- casedata %>% filter (location == "Germany")
 germany <- coronaNet %>% filter (country == "Germany")
 x <- table(germany$type)
 
