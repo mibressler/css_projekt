@@ -1,7 +1,5 @@
 library(dygraphs)
 
-setwd("/Users/isa/Documents/POLITIKWISSENSCHAFT/5. SEMESTER/Computational Social Science/css_projekt")
-
 
 #######
 Thuer_G <- Thuer %>% group_by(Meldedatum) %>%
