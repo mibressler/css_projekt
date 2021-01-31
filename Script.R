@@ -316,7 +316,7 @@ fpm$Meldedatum <- as.Date(fpm$Meldedatum)
 # Model
 
 modeldata <- merge(fpm,geltung_alle,by="Meldedatum", all=T)
-model <- glm(geltung_alle)   
+# model <- glm(geltung_alle)   
     # Geltungsstart 0<->1
 modeldata$Geltungsstart <- as.character(modeldata$Geltungsstart)
 modeldata$Geltungsstart[!is.na(modeldata$Geltungsstart)] <- 1
