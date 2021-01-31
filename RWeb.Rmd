@@ -20,35 +20,15 @@ Column {data-width=650, .tabset}
 ### Schleswig Holstein
 
 ```{r, fig.height=3}
-p <- dygraph(SchlesHols_XT)
-for (i in 1:length(schleshols_ae)) {
-  p <- p %>% dyEvent(schleshols_ae[i], label = "*", labelLoc = "bottom")
+p1 <- dygraph(SchlesHols_XT, main ="Schleswig Holstein", ylab ="Gemeldete Infektionsfälle über Zeit") %>% dyOptions(colors="orange")
+for (i in 1:length(geltung_ae_schleshols)) {
+  p1 <- p1 %>% dyEvent(geltung_ae_schleshols[i], labelLoc = "bottom", color = "gray")
 }
-p
+for (i in 1:length(geltung_st_schleshols)) {
+  p1 <- p1 %>% dyEvent(geltung_st_schleshols[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+p1
 
-dygraph(SchlesHols_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-03-17","SARS-CoV-2-BekämpfungsVO vom 17.März", labelLoc = "bottom") %>%
-dyEvent("2020-03-23","SARS-CoV-2-BekämpfungsVO vom 23.März", labelLoc = "bottom") %>%
-dyEvent("2020-04-02","SARS-CoV-2-BekämpfungsVO vom 2.April", labelLoc = "bottom") %>%
-dyEvent("2020-04-08","SARS-CoV-2-BekämpfungsVO vom 8.April", labelLoc = "bottom") %>%
-dyEvent("2020-04-20","SARS-CoV-2-BekämpfungsVO vom 18.April", labelLoc = "bottom") %>%
-dyEvent("2020-05-04","SARS-CoV-2-BekämpfungsVO vom 1.Mai", labelLoc = "bottom") %>%
-dyEvent("2020-05-18","Corona-Bekämpfungsverordnung vom 16.Mai", labelLoc = "bottom") %>%
-dyEvent("2020-06-08","Corona-Bekämpfungsverordnung vom 5.Juni", labelLoc = "bottom") %>%
-dyEvent("2020-06-29","Corona-Bekämpfungsverordnung vom 26.Juni", labelLoc = "bottom") %>%
-dyEvent("2020-09-02","Corona-Bekämpfungsverordnung vom 1.September", labelLoc = "bottom") %>%  
-dyEvent("2020-09-15","Corona-Bekämpfungsverordnung vom 14.September", labelLoc = "bottom") %>% 
-dyEvent("2020-09-19","Corona-Bekämpfungsverordnung vom 18.September", labelLoc = "bottom") %>% 
-dyEvent("2020-11-02","Corona-Bekämpfungsverordnung vom 1.November", labelLoc = "bottom") %>% 
-dyEvent("2020-11-30","Corona-Bekämpfungsverordnung vom 29.November", labelLoc = "bottom") %>%
-dyEvent("2020-12-16","Corona-Bekämpfungsverordnung vom 1.Dezember", labelLoc = "bottom")
-
-schleshols_ae <- as.character(geltung_ae_schleshols)
-  
-# for (i in length(schleshols_ae)) {
-#  date <- schleshols_ae[i]
- # dyEvent(date,"*", labelLoc="bottom")
-#}
-# dyEvent(d,b,labelLoc="bottom")
 # To Do
   # Funktion für GeltungsbeginnEvents
   # Falldifferenz pro Woche -> Neue Modelle

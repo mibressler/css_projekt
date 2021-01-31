@@ -296,6 +296,8 @@ geltung_erststarts <- geltung$Geltung.START
 
 geltung_erststarts <- MakeDate(geltung_erststarts)
 
+geltung_st_schleshols <- geltung$Geltung.START[1:16] %>% MakeDate()
+
 geltung_ae_schleshols <- as.vector(as.matrix(geltung[c(1:16),c(5:26)])) %>% MakeDate()
 
 geltung_aenderungen <- as.vector(as.matrix(geltung[,c(5:26)]))
