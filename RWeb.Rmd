@@ -20,7 +20,9 @@ Column {data-width=650, .tabset}
 ### Schleswig Holstein
 
 ```{r, fig.height=3}
-dygraph(SchlesHols_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>% dyEvent("2020-03-17","SARS-CoV-2-BekämpfungsVO vom 17.März", labelLoc = "bottom") %>%
+# for (i in 1) {
+dygraph(SchlesHols_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="red") %>%
+dyEvent("2020-03-17","SARS-CoV-2-BekämpfungsVO vom 17.März", labelLoc = "bottom") %>%
 dyEvent("2020-03-23","SARS-CoV-2-BekämpfungsVO vom 23.März", labelLoc = "bottom") %>%
 dyEvent("2020-04-02","SARS-CoV-2-BekämpfungsVO vom 2.April", labelLoc = "bottom") %>%
 dyEvent("2020-04-08","SARS-CoV-2-BekämpfungsVO vom 8.April", labelLoc = "bottom") %>%
@@ -37,6 +39,12 @@ dyEvent("2020-11-30","Corona-Bekämpfungsverordnung vom 29.November", labelLoc =
 dyEvent("2020-12-16","Corona-Bekämpfungsverordnung vom 1.Dezember", labelLoc = "bottom")
     dtest <- as.character(geltung_alle[1,1])
   btest <- c("2021-01-16")
+  schleshols_ae <- as.character(geltung_ae_schleshols)
+  
+for (i in length(schleshols_ae)) {
+  date <- schleshols_ae[i]
+  dyEvent(date,"*", labelLoc="bottom")
+}
 # dyEvent(d,b,labelLoc="bottom")
 # To Do
   # Funktion für GeltungsbeginnEvents
