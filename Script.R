@@ -18,12 +18,12 @@ library(quantreg)
 ## ---- all
 coronaNet <- read.csv('data/coronanet_release.csv')
 casedata_rki <- read.csv('data/rki_basic.csv')
-casedata <- read.csv('data/owid-covid-data.csv')
+# casedata <- read.csv('data/owid-covid-data.csv')
 
 cNetBay <- coronaNet[coronaNet$country=="Germany",]
 cNetBay <- cNetBay[cNetBay$province=="Bavaria",]
 
-germanycase <- casedata %>% filter (location == "Germany")
+# germanycase <- casedata %>% filter (location == "Germany")
 germany <- coronaNet %>% filter (country == "Germany")
 x <- table(germany$type)
 
@@ -32,8 +32,8 @@ plot(x)
 
 d1 <- as.Date("2020-11-11")
 d2 <- as.Date("2020-11-22")
-germanyd <- subset(germanycase, date>d1 & date<d2)
-ggplot(data=germanyd, aes(date, total_cases))+
+# germanyd <- subset(germanycase, date>d1 & date<d2)
+# ggplot(data=germanyd, aes(date, total_cases))+
   geom_bar(fill="steelblue", stat='identity')
 
 # nach Bundesland
@@ -81,7 +81,7 @@ SchlesHols_G <- SchlesHols %>% group_by(Meldedatum) %>%
   Hamb_G <- Hamb_G %>% mutate(week = strftime(Meldedatum, format ="%V"))
   Hamb_G <- Hamb_G  %>% group_by(week) %>% mutate(weekFall = sum(TagFall))
   Hamb_Einwohner <- 1847253
-  Hamb_G <- Hamb_G%>% mutate(inzidenz = (weekFall / Ham_Einwohner)*100000)
+  Hamb_G <- Hamb_G%>% mutate(inzidenz = (weekFall / Hamb_Einwohner)*100000)
   
   Hamb_G <- Hamb_G %>% mutate(weekmean = weekFall / 7)
     
@@ -316,7 +316,7 @@ fpm$Meldedatum <- as.Date(fpm$Meldedatum)
 # Model
 
 modeldata <- merge(fpm,geltung_alle,by="Meldedatum", all=T)
-model <- glm(geltung_alle)   
+# model <- glm(geltung_alle)   
     # Geltungsstart 0<->1
 modeldata$Geltungsstart <- as.character(modeldata$Geltungsstart)
 modeldata$Geltungsstart[!is.na(modeldata$Geltungsstart)] <- 1
