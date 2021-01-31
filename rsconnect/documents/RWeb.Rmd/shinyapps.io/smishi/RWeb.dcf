@@ -5,8 +5,8 @@ account: smishi
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3420994
-bundleId: 4039672
+bundleId: 4163252
 url: https://smishi.shinyapps.io/RWeb/
-when: 1609267736.93623
+when: 1612094206.19777
 asMultiple: FALSE
 asStatic: FALSE
