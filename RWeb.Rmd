@@ -38,10 +38,10 @@ dyEvent("2020-12-16","Corona-Bekämpfungsverordnung vom 1.Dezember", labelLoc = 
 
 schleshols_ae <- as.character(geltung_ae_schleshols)
   
-for (i in length(schleshols_ae)) {
-  date <- schleshols_ae[i]
-  dyEvent(date,"*", labelLoc="bottom")
-}
+# for (i in length(schleshols_ae)) {
+#  date <- schleshols_ae[i]
+ # dyEvent(date,"*", labelLoc="bottom")
+#}
 # dyEvent(d,b,labelLoc="bottom")
 # To Do
   # Funktion für GeltungsbeginnEvents
