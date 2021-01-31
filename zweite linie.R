@@ -28,10 +28,8 @@ Thuer_all <- cbind(Thuer_XT, Thuer_XT2)
 dygraph(Thuer_all, main = "thueringen") %>%
   dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
   dyAxis("y2", label = "Inzidenzwert", independentTicks = TRUE) %>%
-  dySeries("inzidenz", axis = 'y2') %>%
-  dyRoller(rollPeriod = 1)
-
-?spline   
+  dySeries("inzidenz", axis = 'y2') 
+  
 
 
 
