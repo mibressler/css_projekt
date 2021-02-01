@@ -296,10 +296,6 @@ geltung_erststarts <- geltung$Geltung.START
 
 geltung_erststarts <- MakeDate(geltung_erststarts)
 
-geltung_st_schleshols <- geltung$Geltung.START[1:16] %>% MakeDate()
-
-geltung_ae_schleshols <- as.vector(as.matrix(geltung[c(1:16),c(5:26)])) %>% MakeDate()
-
 geltung_aenderungen <- as.vector(as.matrix(geltung[,c(5:26)]))
 
 geltung_aenderungen <- MakeDate(geltung_aenderungen)
@@ -307,6 +303,12 @@ geltung_aenderungen <- MakeDate(geltung_aenderungen)
 geltung_alle <- c(geltung_erststarts,geltung_aenderungen)
 
 geltung_alle <- data.frame(Meldedatum=geltung_alle,Geltungsstart=geltung_alle)
+
+# Geltungen nach Bundesländer
+
+geltung_st_schleshols <- geltung$Geltung.START[1:16] %>% MakeDate()
+
+geltung_ae_schleshols <- as.vector(as.matrix(geltung[c(1:16),c(5:26)])) %>% MakeDate()
 
 # Weekmeans
 bundes_weekmean <- c(BadWuert_G$weekmean,Bay_G$weekmean,Berlin_G$weekmean,Brand_G$weekmean,Bremen_G$weekmean,Hamb_G$weekmean,Hessen_G$weekmean,MeckVor_G$weekmean,Nieder_G$weekmean,NordWest_G$weekmean,RhePfalz_G$weekmean,Saarl_G$weekmean,SachAnh_G$weekmean,Sachsen_G$weekmean,SchlesHols_G$weekmean,Thuer_G$weekmean)
@@ -394,7 +396,7 @@ ggplot(data=dmodeldata, aes(x=Meldedatum))+
 
 SchlesHols_G2 <- SchlesHols_G %>% group_by(Meldedatum) %>%
   distinct(inzidenz, TagFall)
-SchlesHols_XT2 <- xts(SchlesHols_G2, order.by = as.POSIXct(Schles_Hols_G2$Meldedatum))
+SchlesHols_XT2 <- xts(SchlesHols_G2, order.by = as.POSIXct(SchlesHols_G2$Meldedatum))
 
 SchlesHols_all <- cbind(SchlesHols_XT, SchlesHols_XT2)
 
