@@ -20,9 +20,9 @@ Column {data-width=650, .tabset}
 ### Schleswig Holstein
 
 ```{r, fig.height=3}
-p1 <- dygraph(SchlesHols_XT2, main ="Schleswig Holstein") %>% dyOptions(colors="orange") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+p1 <- dygraph(SchlesHols_XT2, main ="Schleswig Holstein") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
   dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
-  dySeries("inzidenz", axis = 'y2') 
+  dySeries("inzidenz", axis = "y2") %>% dyOptions(colors=c("blue","orange"))
 for (i in 1:length(geltung_ae_schleshols)) {
   p1 <- p1 %>% dyEvent(geltung_ae_schleshols[i], labelLoc = "bottom", color = "gray")
 }
