@@ -310,6 +310,82 @@ geltung_st_schleshols <- geltung$Geltung.START[1:16] %>% MakeDate()
 
 geltung_ae_schleshols <- as.vector(as.matrix(geltung[c(1:16),c(5:26)])) %>% MakeDate()
 
+
+geltung_st_hamb <- geltung$Geltung.START[17:20] %>% MakeDate()
+
+geltung_ae_hamb <- as.vector(as.matrix(geltung[c(17:20),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_nieder <- geltung$Geltung.START[21:34] %>% MakeDate()
+
+geltung_ae_nieder <- as.vector(as.matrix(geltung[c(21:34),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_bremen <- geltung$Geltung.START[35:58] %>% MakeDate()
+
+geltung_ae_bremen <- as.vector(as.matrix(geltung[c(35:58),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_nordwest <- geltung$Geltung.START[59:70] %>% MakeDate()
+
+geltung_ae_nordwest <- as.vector(as.matrix(geltung[c(59:70),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_hessen <- geltung$Geltung.START[71:77] %>% MakeDate()
+
+geltung_ae_hessen <- as.vector(as.matrix(geltung[c(71:77),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_rhepfalz <- geltung$Geltung.START[78:92] %>% MakeDate()
+
+geltung_ae_rhepfalz <- as.vector(as.matrix(geltung[c(78:92),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_badwuert <- geltung$Geltung.START[93:97] %>% MakeDate()
+
+geltung_ae_badwuert <- as.vector(as.matrix(geltung[c(93:97),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_bay <- geltung$Geltung.START[98:108] %>% MakeDate()
+
+geltung_ae_bay <- as.vector(as.matrix(geltung[c(98:108),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_saarl <- geltung$Geltung.START[109:131] %>% MakeDate()
+
+geltung_ae_saarl <- as.vector(as.matrix(geltung[c(109:131),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_berlin <- geltung$Geltung.START[132:135] %>% MakeDate()
+
+geltung_ae_berlin <- as.vector(as.matrix(geltung[c(132:135),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_brand <- geltung$Geltung.START[136:144] %>% MakeDate()
+
+geltung_ae_brand <- as.vector(as.matrix(geltung[c(136:144),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_meckvor <- geltung$Geltung.START[145:159] %>% MakeDate()
+
+geltung_ae_meckvor <- as.vector(as.matrix(geltung[c(145:159),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_sachsen <- geltung$Geltung.START[160:174] %>% MakeDate()
+
+geltung_ae_sachsen <- as.vector(as.matrix(geltung[c(160:174),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_sachanh <- geltung$Geltung.START[175:183] %>% MakeDate()
+
+geltung_ae_sachahn <- as.vector(as.matrix(geltung[c(175:183),c(5:26)])) %>% MakeDate()
+
+
+geltung_st_thuer <- geltung$Geltung.START[184:197] %>% MakeDate()
+
+geltung_ae_thuer <- as.vector(as.matrix(geltung[c(184:197),c(5:26)])) %>% MakeDate()
+
+
 # Weekmeans
 bundes_weekmean <- c(BadWuert_G$weekmean,Bay_G$weekmean,Berlin_G$weekmean,Brand_G$weekmean,Bremen_G$weekmean,Hamb_G$weekmean,Hessen_G$weekmean,MeckVor_G$weekmean,Nieder_G$weekmean,NordWest_G$weekmean,RhePfalz_G$weekmean,Saarl_G$weekmean,SachAnh_G$weekmean,Sachsen_G$weekmean,SchlesHols_G$weekmean,Thuer_G$weekmean)
 
