@@ -31,6 +31,10 @@ for (i in 1:length(geltung_st_schleshols)) {
 }
 p1
 
+dySeries("inzidenz", axis = 'y2', label = "Inzidenzwert", color = "rgb(0,101,189)") %>%
+dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+
+
 # To Do
   # Funktion für GeltungsbeginnEvents
   # Falldifferenz pro Woche -> Neue Modelle

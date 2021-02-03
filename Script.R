@@ -1,9 +1,3 @@
-# MICHAEL BRAUCHT ZOOM LINK AUF SLACK !!
-
-
-# MICHAEL BRAUCHT ZOOM LINK AUF SLACK !!
-
-# MICHAEL BRAUCHT ZOOM LINK AUF SLACK !!
 
 
 library(tidyverse)
@@ -13,6 +7,7 @@ library(xts)
 library(tidyquant)
 library(pROC)
 library(quantreg)
+library(car)
 
 
 ## ---- all
@@ -447,7 +442,15 @@ ggplot(data=gmodeldata, aes(x=Meldedatum))+
 gmodel <- lm(gmodeldata$Geltungsstart ~ gmodeldata$FaelleproTag)
 summary(gmodel)
 
+     # Correlation testing
 cor <- cor.test(gmodeldata$Geltungsstart,gmodeldata$FaelleproTag)
+
+attach(gmodeldata)
+plot(gmodeldata$FaelleproTag, gmodeldata$Geltungsstart)
+abline(lm(FaelleproTag~Geltungsstart), col="red")
+lines(lowess(FaelleproTag~Geltungsstart))
+scatterplot(FaelleproTag ~ Geltungsstart | Meldedatum, data=gmodeldata)
+
 # Ansatz mit Differenz der Fallzahlen
 g2modeldata <- gmodeldata %>% mutate(test="test")
 dmodeldata <- g2modeldata %>% group_by(test) %>% mutate(diff= FaelleproTag - lag(FaelleproTag))
@@ -460,12 +463,31 @@ boxplot(dmodel[['residuals']],main='Boxplot: Residuals',ylab='residual value')
 
 dcor <- cor.test(dmodeldata$Geltungsstart,dmodeldata$diff)
 
+attach(dmodeldata)
+plot(dmodeldata$diff, dmodeldata$Geltungsstart)
+abline(lm(diff~Geltungsstart), col="red")
+
+dabsmodeldata <- dmodeldata
+dabsmodeldata$diff <- abs(dabsmodeldata$diff)
+
+attach(dabsmodeldata)
+plot(dabsmodeldata$diff, dabsmodeldata$Geltungsstart)
+abline(lm(diff~Geltungsstart), col="red")
+
+
 ggplot(data=dmodeldata, aes(x=Meldedatum))+
   geom_line(aes(y=diff),color="red") +
   geom_smooth(aes(y=Geltungsstart*1500),color="blue",span=0.1)+
   scale_y_continuous(sec.axis=sec_axis(trans~./1500,name="Geltungsstarts am Tag"))
 
 # verordnungen <- data.frame(Bundesland = SchleswigHolstein, Geltungsstart = 
+
+
+# Correaltion nur Erststarts
+
+Meldedatum <- geltung_erststarts
+Meldedatum <- as.data.frame(Meldedatum)
+emodeldata <- merge(gmodeldata, Meldedatum, by="Meldedatum")
 
 
 # zweite linie
