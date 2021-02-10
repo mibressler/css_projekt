@@ -449,7 +449,7 @@ attach(gmodeldata)
 plot(gmodeldata$FaelleproTag, gmodeldata$Geltungsstart)
 abline(lm(FaelleproTag~Geltungsstart), col="red")
 lines(lowess(FaelleproTag~Geltungsstart))
-scatterplot(FaelleproTag ~ Geltungsstart | Meldedatum, data=gmodeldata)
+# scatterplot(FaelleproTag ~ Geltungsstart | Meldedatum, data=gmodeldata)
 
 # Ansatz mit Differenz der Fallzahlen
 g2modeldata <- gmodeldata %>% mutate(test="test")
@@ -489,6 +489,43 @@ Meldedatum <- geltung_erststarts
 Meldedatum <- as.data.frame(Meldedatum)
 emodeldata <- merge(gmodeldata, Meldedatum, by="Meldedatum")
 
+
+# Bayern - V / L / A
+
+bayvla <- read.csv("bayernvla.csv")
+colnames(bayvla) <- c("Name","Meldedatum","Richtung")
+bayvla$Meldedatum <- MakeDate(bayvla$Meldedatum)
+bayvladat <- merge(gmodeldata, bayvla, by="Meldedatum", all=T)
+# bayvladat$Richtung[is.na(bayvladat$Richtung)] <- 0
+# bayvladat$Richtung[bayvladat$Richtung=="v"] <- 1
+bayvlatime <- bayvladat[,c("Meldedatum","Richtung")]
+
+
+bayvlatime$Richtung[bayvlatime$Richtung=="v"] <- "Verschärfungen"
+bayvlatime$Richtung[bayvlatime$Richtung=="l"] <- "Lockerungen"
+bayvlatime$Richtung[bayvlatime$Richtung=="a"] <- "Aktualisierungen"
+
+ggplot(na.omit(bayvlatime),aes(x = "Bayern",fill = Richtung)) + 
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#DAD7CB","#98C6EA", "#E37222"
+                               )) +
+  xlab("")+ylab("")
+
+#ggplot(na.omit(bayvlatime),aes(x = "Bayern",fill = Richtung)) + 
+#  geom_bar(position = "fill")
+
+#ggplot(na.omit(bayvlatime)) + 
+ # geom_bar(aes(y = Richtung, fill = factor(..x..)), stat="count") +
+#  geom_text(aes( label = scales::percent(..prop..),
+#                 y= ..prop.. ), stat= "count", vjust = -.5) +
+#  labs(y = "Percent", fill="day") +
+#  facet_grid(~sex) +
+#  scale_y_continuous(labels = scales::percent)
+
+# bayvlatime <- na.omit(bayvlatime)  %>%
+#  group_by(Meldedatum, Richtung) %>%
+#  summarise(n = sum(Richtung)) %>%
+#  mutate(percentage = n / sum(n))
 
 # zweite linie
 

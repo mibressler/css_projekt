@@ -22,7 +22,8 @@ Column {data-width=650, .tabset}
 ```{r, fig.height=3}
 p1 <- dygraph(SchlesHols_XT2, main ="Schleswig Holstein") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
   dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
-  dySeries("inzidenz", axis = "y2") %>% dyOptions(colors=c("blue","orange"))
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
 for (i in 1:length(geltung_ae_schleshols)) {
   p1 <- p1 %>% dyEvent(geltung_ae_schleshols[i], labelLoc = "bottom", color = "gray")
 }
@@ -31,8 +32,6 @@ for (i in 1:length(geltung_st_schleshols)) {
 }
 p1
 
-dySeries("inzidenz", axis = 'y2', label = "Inzidenzwert", color = "rgb(0,101,189)") %>%
-dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
 
 
 # To Do
@@ -45,140 +44,263 @@ dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph =
 ### Hamburg
 
 ```{r, fig.height=3}
-dygraph(Hamb_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-03-16","Allgemeinverfügung", labelLoc = "bottom") %>% dyEvent("2020-04-03","HmbSARS-CoV-2-EindämmungsVO vom 2.April", labelLoc = "bottom") %>% 
-dyEvent("2020-05-27","HmbSARS-CoV-2-EindämmungsVO vom 2.Mai", labelLoc = "bottom") %>% dyEvent("2020-07-01","HmbSARS-CoV-2-EindämmungsVO vom 30.Juni", labelLoc = "bottom")
+
+p3 <- dygraph(Hamb_XT2, main ="Hamburg") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_hamb)) {
+  p3 <- p3 %>% dyEvent(geltung_ae_hamb[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_hamb)) {
+  p3 <- p3 %>% dyEvent(geltung_st_hamb[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+p3
 
 ```
 
 ### Niedersachsen
 
 ```{r, fig.height=3}
-dygraph(Nieder_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-03-20","CoronaVV", labelLoc = "bottom") %>% dyEvent("2020-03-28","CoronaVsozKonBeschrV", labelLoc = "bottom") %>% dyEvent("2020-04-04","CoronaVsozKonBeschrV 2", labelLoc = "bottom") %>% dyEvent("2020-04-08","CoronaVsozKonBeschrV 3", labelLoc = "bottom") %>% dyEvent("2020-04-19","CoronaVNeuIfSV", labelLoc = "bottom") %>% dyEvent("2020-05-06","CoronaVKHBeschrV", labelLoc = "bottom") %>% dyEvent("2020-05-11","CoronaVInfSchMaßnV", labelLoc = "bottom") %>% dyEvent("2020-07-13","CoronaVInfSchMaßnV 2", labelLoc = "bottom") %>% dyEvent("2020-07-18","CoronaVKHBeschrV 2", labelLoc = "bottom") %>% dyEvent("2020-10-09","CoronaVInfSchMaßnV 3", labelLoc = "bottom") %>% dyEvent("2020-10-10","CoronaVBeherbVV", labelLoc = "bottom") %>% dyEvent("2020-11-02","CoronaVInfSchMaßnV 4", labelLoc = "bottom") %>% dyEvent("2020-11-09","CoronaVQuarV", labelLoc = "bottom")
-
-
+nieder <- dygraph(Nieder_XT2, main ="Niedersachsen") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_nieder)) {
+  Nieder <- nieder %>% dyEvent(geltung_ae_nieder[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_nieder)) {
+  nieder <- nieder %>% dyEvent(geltung_st_nieder[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+nieder
 ```
 ### Bremen
 
 ```{r, fig.height=3}
-dygraph(Bremen_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-04-10","1. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-05-06","2. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-05-14","3. Coronaverordnung", labelLoc = "bottom")%>% dyEvent("2020-05-20","4. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-05-27","5. Coronaverordnung", labelLoc = "bottom")%>% dyEvent("2020-06-10","6. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-06-17","7. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-06-22","8. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-06-26","9. Coronaverordnung", labelLoc = "bottom")%>% dyEvent("2020-07-02","10. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-07-15","11. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-08-01","12. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-08-11","13. Coronaverordnung", labelLoc = "bottom")%>% dyEvent("2020-09-01","14. Coronaverordnung", labelLoc = "bottom")%>% dyEvent("2020-09-03","15. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-09-09","16. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-10-02","17. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-10-17","18. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-11-03","19. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-11-11","20. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-11-18","21. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-12-14","22. Coronaverordnung", labelLoc = "bottom") %>% dyEvent("2020-12-16","23. Coronaverordnung", labelLoc = "bottom")
+bremen <- dygraph(Bremen_XT2, main ="Bremen") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_bremen)) {
+  bremen <- bremen %>% dyEvent(geltung_ae_bremen[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_bremen)) {
+  bremen <- bremen %>% dyEvent(geltung_st_bremen[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+bremen
+
 
 ```
 
 ### Nordrhein-Westfalen
 
 ```{r, fig.height=3}
-dygraph(NordWest_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange")  %>% dyEvent("2020-03-23","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-04-20","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-05-04","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-05-07","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-05-11","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-05-20","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-05-21","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-05-30","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-06-15","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-06-16","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-06-25","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-06-30","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-07-01","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-07-15","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-08-12","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-08-14","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-09-01","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-09-15","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-10-01","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-10-17","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-11-02","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-11-10","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-12-01","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-12-09","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-12-16","CoronaSchVO", labelLoc = "bottom") %>% dyEvent("2020-12-18","CoronaSchVO", labelLoc = "bottom")
+nordwest <- dygraph(NordWest_XT2, main ="Nordrhein-Westfalen") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_nordwest)) {
+  nordwest <- nordwest %>% dyEvent(geltung_ae_nordwest[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_nordwest)) {
+  nordwest <- nordwest %>% dyEvent(geltung_st_nordwest[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+nordwest
 
 ```
 
 ### Rheinland Pfalz
 
 ```{r, fig.height=3}
-dygraph(RhePfalz_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange")%>% dyEvent("2020-03-20","1. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-03-21","2. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-03-23","3. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-04-20","4. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-05-03","5. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-05-13","6. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-05-18","7. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-05-27","8. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-06-10","9. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-06-24","10. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-09-16","11. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-11-02","12. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-12-01","13. CoBeLVO", labelLoc = "bottom") %>% dyEvent("2020-12-16","14. CoBeLVO", labelLoc = "bottom")
+rhepfalz <- dygraph(RhePfalz_XT2, main ="Rheinland Pfalz") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_rhepfalz)) {
+  rhepfalz <- rhepfalz %>% dyEvent(geltung_ae_rhepfalz[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_rhepfalz)) {
+  rhepfalz <- rhepfalz %>% dyEvent(geltung_st_rhepfalz[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+rhepfalz
+
 
 ```
 
 ### Hessen
 
 ```{r, fig.height=3}
-dygraph(Hessen_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+hessen <- dygraph(Hessen_XT2, main ="Hessen") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_hessen)) {
+  hessen <- hessen %>% dyEvent(geltung_ae_hessen[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_hessen)) {
+  hessen <- hessen %>% dyEvent(geltung_st_hessen[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+hessen
+
 
 ```
 
 ### Baden-Württemberg
 
 ```{r, fig.height=3}
-dygraph(BadWuert_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+badwuert <- dygraph(BadWuert_XT2, main ="Baden-Würtemmberg") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_badwuert)) {
+  badwuert <- badwuert %>% dyEvent(geltung_ae_badwuert[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_badwuert)) {
+  badwuert <- badwuert %>% dyEvent(geltung_st_badwuert[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+badwuert
 
 ```
 
 ### Bayern
 
 ```{r, fig.height=3}
-dygraph(Bay_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% 
-dyEvent("2020-03-31","BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-04-20","2. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-05-04","3. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-05-11","4. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-05-30","5. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-06-22","6. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-10-02","7. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-11-02","8. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-12-01","9. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-12-09","10. BayIfSMV", labelLoc = "bottom") %>%
-dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+p2 <- dygraph(Bay_XT2, main ="Bayern") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_bay)) {
+  p2 <- p2 %>% dyEvent(geltung_ae_bay[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_bay)) {
+  p2 <- p2 %>% dyEvent(geltung_st_bay[i],label = geltung$Veordnung[97+i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+p2
 
 ```
 
 ### Saarland
 
 ```{r, fig.height=3}
-dygraph(Saarl_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>%
-  dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+saarl <- dygraph(Saarl_XT2, main ="Saarland") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_saarl)) {
+  saarl <- saarl %>% dyEvent(geltung_ae_saarl[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_saarl)) {
+  saarl <- saarl %>% dyEvent(geltung_st_saarl[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+saarl
+
 
 ```
 
 ### Berlin
 
 ```{r, fig.height=3}
-dygraph(Berlin_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+berlin <- dygraph(Berlin_XT2, main ="Berlin") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_berlin)) {
+  berlin <- berlin %>% dyEvent(geltung_ae_berlin[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_berlin)) {
+  berlin <- berlin %>% dyEvent(geltung_st_berlin[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+berlin
+
 
 ```
 
 ### Brandenburg
 
 ```{r, fig.height=3}
-dygraph(Brand_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+brand <- dygraph(Brand_XT2, main ="Brandenburg") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_brand)) {
+  brand <- brand %>% dyEvent(geltung_ae_brand[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_brand)) {
+  brand <- brand %>% dyEvent(geltung_st_brand[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+brand
+
 
 ```
 
 ### Mecklenburg-Vorpommern
 
 ```{r, fig.height=3}
-dygraph(MeckVor_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+meckvor <- dygraph(MeckVor_XT2, main ="Mecklenburg-Vorpommern") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_meckvor)) {
+  meckvor <- meckvor %>% dyEvent(geltung_ae_meckvor[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_meckvor)) {
+  meckvor <- meckvor %>% dyEvent(geltung_st_meckvor[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+meckvor
+
 
 ```
 
 ### Sachsen
 
 ```{r, fig.height=3}
-dygraph(Sachsen_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-04-01","SächsCoronaSchVO vom 31.März", labelLoc = "bottom") %>%
-dyEvent("2020-04-20","SächsCoronaSchVO vom 17.April", labelLoc = "bottom") %>%
-dyEvent("2020-05-04","SächsCoronaSchVO vom 30.April", labelLoc = "bottom") %>%
-dyEvent("2020-05-15","SächsCoronaSchVO vom 12.Mai", labelLoc = "bottom") %>%
-dyEvent("2020-06-06","SächsCoronaSchVO vom 3.Juni", labelLoc = "bottom") %>%
-dyEvent("2020-06-27","SächsCoronaSchVO vom 25.Juni", labelLoc = "bottom") %>%
-dyEvent("2020-07-18","SächsCoronaSchVO vom 14.Juli", labelLoc = "bottom") %>%
-dyEvent("2020-09-01","SächsCoronaSchVO vom 25.August", labelLoc = "bottom") %>%
-dyEvent("2020-10-01","SächsCoronaSchVO vom 29.September", labelLoc = "bottom") %>%
-dyEvent("2020-10-24","SächsCoronaSchVO vom 21.Oktober", labelLoc = "bottom") %>%
-dyEvent("2020-11-02","SächsCoronaSchVO vom 30.Oktober", labelLoc = "bottom") %>%
-dyEvent("2020-11-13","SächsCoronaSchVO vom 10.November", labelLoc = "bottom") %>%
-dyEvent("2020-12-01","SächsCoronaSchVO vom 27.November", labelLoc = "bottom") %>%
-dyEvent("2020-12-14","SächsCoronaSchVO vom 11.Dezember", labelLoc = "bottom") %>%
-dyEvent("2020-12-16","SächsCoronaSchVO vom 14.Dezember", labelLoc = "bottom") 
+sachsen <- dygraph(Sachsen_XT2, main ="Sachsen") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_sachsen)) {
+  sachsen <- sachsen %>% dyEvent(geltung_ae_sachsen[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_sachsen)) {
+  sachsen <- sachsen %>% dyEvent(geltung_st_sachsen[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+sachsen
+ 
 
 ```
 
 ### Sachsen-Anhalt
 
 ```{r, fig.height=3}
-dygraph(SachAnh_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-12-16","11. BayIfSMV", labelLoc = "bottom")
+sachanh <- dygraph(SachAnh_XT2, main ="Sachsen-Anhalt") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_sachahn)) {
+  sachanh <- sachanh %>% dyEvent(geltung_ae_sachahn[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_sachanh)) {
+  sachanh <- sachanh %>% dyEvent(geltung_st_sachanh[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+sachanh
+
 
 ```
 
 ### Thueringen
 
 ```{r, fig.height=3}
-dygraph(Thuer_XT, main = "Infektionsfälle über Zeit", ylab = "Gemeldete Infektionsfälle") %>% dyOptions(colors="orange") %>% dyEvent("2020-03-25","Corona EindämmungsVO", labelLoc = "bottom") %>%
-dyEvent("2020-03-27","ThürSARS-CoV-2-EindmaßnVO", labelLoc = "bottom") %>%
-dyEvent("2020-04-08","2.ThürSARS-CoV-2-EindmaßnVO", labelLoc = "bottom") %>%
-dyEvent("2020-04-20","3.ThürSARS-CoV-2-EindmaßnVO", labelLoc = "bottom") %>%
-dyEvent("2020-05-13","ThürSARS-CoV-2-MaßnFortentwVO", labelLoc = "bottom") %>%
-dyEvent("2020-05-26","2.Thüringer Quarantäneverordnung", labelLoc = "bottom") %>%
-dyEvent("2020-06-16","3.Thüringer Quarantäneverordnung", labelLoc = "bottom") %>%
-dyEvent("2020-07-16","4.Thüringer Quarantäneverordnung", labelLoc = "bottom") %>%
-dyEvent("2020-11-02","ThürSARS-CoV-2-SonderEindmaßnVO", labelLoc = "bottom") %>%
-dyEvent("2020-11-08","5.Thüringer Quarantäneverordnung", labelLoc = "bottom") 
+thuer <- dygraph(Thuer_XT2, main ="Thüringen") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
+  dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
+  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
+  dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
+for (i in 1:length(geltung_ae_thuer)) {
+  thuer <- thuer %>% dyEvent(geltung_ae_thuer[i], labelLoc = "bottom", color = "gray")
+}
+for (i in 1:length(geltung_st_thuer)) {
+  thuer <- thuer %>% dyEvent(geltung_st_thuer[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
+}
+thuer
+
 
 ``` 
