@@ -97,7 +97,6 @@ bremen
 ```{r, fig.height=3}
 nordwest <- dygraph(NordWest_XT2, main ="Nordrhein-Westfalen") %>% dyAxis("y", label = "Gemeldete Infektionsfälle") %>%
   dyAxis("y2", label = "7-Tage-Inzidenzwert", independentTicks = TRUE) %>%
-  dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
   dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
 for (i in 1:length(geltung_ae_nordwest)) {
   nordwest <- nordwest %>% dyEvent(geltung_ae_nordwest[i], labelLoc = "bottom", color = "gray")
