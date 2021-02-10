@@ -67,7 +67,7 @@ nieder <- dygraph(Nieder_XT2, main ="Niedersachsen") %>% dyAxis("y", label = "Ge
   dySeries("inzidenz", axis = "y2", color = "rgb(0,101,189)") %>%
   dySeries("TagFall", label = "Fälle/Tag", color = "rgb(227,114,34)", fillGraph = TRUE)
 for (i in 1:length(geltung_ae_nieder)) {
-  Nieder <- nieder %>% dyEvent(geltung_ae_nieder[i], labelLoc = "bottom", color = "gray")
+  nieder <- nieder %>% dyEvent(geltung_ae_nieder[i], labelLoc = "bottom", color = "gray")
 }
 for (i in 1:length(geltung_st_nieder)) {
   nieder <- nieder %>% dyEvent(geltung_st_nieder[i],label = geltung$Veordnung[i],labelLoc = "bottom", color = "black", strokePattern = "solid")
