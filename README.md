@@ -1,29 +1,18 @@
 Computational Social Science Project
 ================
 
-``` r
-library(tidyverse)
-```
+Quelldaten
+--------------
 
-    ## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
 
-    ## v ggplot2 3.3.2     v purrr   0.3.4
-    ## v tibble  3.0.4     v dplyr   1.0.2
-    ## v tidyr   1.1.2     v stringr 1.4.0
-    ## v readr   1.4.0     v forcats 0.5.0
+R Analyse
+------------
+All unsere weiteren Datenumwandlungen, statistischen Tests und Plots haben wir in dem R Dokument **Skript.R** zusammengefasst.
+Die verwendeten Packages sind Tidyverse (generelle Funktionen), readr, zoo, xts, tidyquant (u.a. für bessere Datums-transformationen), pROC (ROC-Kurven für logistische Regression), quantreg und car (Unterstützung bei statistischen Tests).
+Um unser Projekt in R zu laden, können Sie auch die im Repository enthaltene Projektdatei laden.
 
-    ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
+Zunächst werden die Meldezahlen des Robert-Koch-Instituts aus einer lokal gespeicherten (aus Speicherplatzgründen im git-ignorierten data Ordner) CSV-Datei importiert. (Aktuelle Version kann hier (https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0) heruntergeladen werden.)
 
-``` r
-library(readr)
 
-coronaNet <- read.csv('data/coronanet_release.csv')
-germany <- coronaNet %>% filter (country == "Germany")
-x <- table(germany$type)
-
-plot(x)
-```
-
-![](README_figs/README-unnamed-chunk-1-1.png)<!-- -->
+Webseite
+------------
