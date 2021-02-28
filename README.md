@@ -7,6 +7,7 @@ Quelldaten
 --------------
 **Meldezahlen des Robert-Koch-Instituts** (müssen erst noch manuell im git-ignorierten Ordner "data" als "rki_basic.csv" hinterlegt werden)
 Quelle:https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0
+
 **Geltungszeiträume der Verordnungen und Verordnungsänderungen für jedes Bundesland**
 Da die Einträge zu den Maßnahmen im [CoronaNet Datensatz](https://www.coronanet-project.org/) leider nicht ganz mit den rechtlich festgelegten Geltungszeiträumen der spezifischen Corona-Schutz-Verordnungen der einzelnen Länder korrespondieren, haben wir uns dazu entschieden die Daten der Geltungsstarts der Verordnungen und Verordnungsänderungen selbst zu erheben und haben dafür Rechtsportale (wie etwa Juris) aufgesucht. (Leider keine öffentlich zugängliche API)
 (muss auch noch manuell im "data"-Ordner als "geltung_18_01.csv" hinterlegt werden)
